@@ -11,7 +11,6 @@ def index():
 @app.route('/friends', methods=['POST'])
 def create():
     query = "INSERT INTO friends (first_name, last_name, occupation, created_at, updated_at) VALUES (:first_name, :last_name, :occupation, NOW(), NOW())"
-    # add a friend to the database!
     data = {
              'first_name': request.form['first_name'],
              'last_name':  request.form['last_name'],
@@ -22,14 +21,8 @@ def create():
 
 @app.route('/friends/<friend_id>')
 def show(friend_id):
-    # Write query to select specific user by id. At every point where
-    # we want to insert data, we write ":" and variable name.
     query = "SELECT * FROM friends WHERE id = :specific_id"
-    # Then define a dictionary with key that matches :variable_name in query.
     data = {'specific_id': friend_id}
-    # Run query with inserted data.
     friends = mysql.query_db(query, data)
-    # Friends should be a list with a single object,
-    # so we pass the value at [0] to our template under alias one_friend.
     return render_template('index.html', one_friend=friends)
 app.run(debug=True)
