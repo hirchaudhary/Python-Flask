@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <title>Registration</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="form-style-3">
+        <form action="/register" method="POST">
+            <fieldset>
+                <legend>Registration</legend>
+                {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+                <p>* {{ message }}</p>
+                {% endfor %} {% endif %} {% endwith %} {% block body %}{% endblock %}
+                <label for="first_name"><span>First Name: <span class="required">*</span></span><input type="text" class="input-field" name="first_name" value="" placeholder="First Name"/></label>
+                <label for="last_name"><span>Last Name: <span class="required">*</span></span><input type="text" class="input-field" name="last_name" value="" placeholder="Last Name"/></label>
+                <label for="email"><span>Email: <span class="required">*</span></span><input type="email" class="input-field" name="email" value="" placeholder="Email"/></label>
+                <label for="password"><span>Password: <span class="required">*</span></span><input type="password" class="input-field" name="password" value="" placeholder="Password"/></label>
+                <label for="confirm_password"><span>Confirm Password: <span class="required">*</span></span><input type="password" class="input-field" name="confirm_password" value="" placeholder="Password"/></label>
+                <label><span>&nbsp;</span><input type="submit" value="Register" /></label><br> {% if error %}
+                <p style="color:red">Error: {{ error }}</p>
+                {% endif %}
+            </fieldset>
+        </form>
+        <form action="/login" method="POST">
+            <fieldset>
+                <legend>Login</legend>
+                <label for="email"><span>Email: <span class="required">*</span></span><input type="email" class="input-field" name="email" value="" placeholder="Email"/></label>
+                <label for="password"><span>Password: <span class="required">*</span></span><input type="password" class="input-field" name="password" value="" placeholder="Password"/></label>
+                <label><span>&nbsp;</span><input type="submit" value="Login" /></label>
+            </fieldset>
+        </form>
+    </div>
+</body>
+
+</html>

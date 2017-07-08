@@ -1,0 +1,47 @@
+<html>
+<head>
+  <title>Friends</title>
+  <style>
+      .wrapper{
+          margin: auto;
+          width: 500;
+          background-color: lightblue;
+          border: 4px solid black;
+          padding: 20px;
+          border-radius: 5px;
+          color: black;
+      }
+      input{
+          color: black;
+          border-style: none;
+          background-color: lightcyan;
+          width: 100px;
+          margin-top: 10px;
+      }
+      #email{
+          width: 500px;
+      }
+  </style>
+</head>
+<body>
+    <div class="wrapper">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    {% block body %}
+    {% endblock %}
+    <h2>Add Email</h2>
+    <form action='/email' method='POST'>
+        <label for="email">Email Adress:</label><br>
+        <input type="text" name="email" id="email">
+        <input type="submit" value="Add">
+    </form>
+    </div>
+</body>
+</html>

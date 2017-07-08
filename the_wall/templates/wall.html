@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="form-style-3">
+        <fieldset>
+            <legend>Welcome, {{session['name']}} <a href="/logout">(Logout)</a></legend>
+            <form action="/message" method="POST">
+                <textarea name="message"></textarea>
+                <input type="submit" value="Post a message" />
+            </form>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %} {% block body %} {% endblock %}
+
+            {% for msg in messages %}
+                    <p>{{ msg['first_name'] }} {{ msg['last_name'] }} - {{ msg['created_at'] }}</p>
+                    <p>{{ msg['message'] }}</p>
+                {% for cmt in comments %}
+                    {% if cmt['messages_id'] == msg['message_id'] %}
+                    <blockquote>
+                        <p>{{ cmt['first_name'] }} {{ cmt['last_name'] }}- {{ cmt['created_at'] }}</p>
+                        <p>{{ cmt['comment'] }}</p>
+                    </blockquote>
+                    {% endif %}
+                {% endfor %}
+                <form action="/comment/{{ msg['message_id'] }}" method="POST">
+                    <textarea name="comment"></textarea>
+                    <input type="submit" value="Comment" />
+                </form>
+            {% endfor %}
+            </fieldset>
+      </div>
+</body>
+
+</html>

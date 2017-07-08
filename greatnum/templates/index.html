@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>
+            Guess number
+        </title>
+
+    </head>
+    <body style="text-align: center">
+        <h1>Welcome to the great number Game</h1>
+        <p>I am thinking of a number between 1 and 100</p>
+        <p>Take a guess</p>
+        <h1>{{ res }}</h1>
+      <form action='/guess' method='post'>
+          <label for="num">Name:</label>
+          <input type="text" name="num">
+          <input type="submit" name="submit">
+          <input type="hidden" name="none">
+      </form>
+      <form action='/reset' method='post'>
+          <input type="submit" name="submit" value="Play Again">
+          <input type="hidden" name="none">
+      </form>
+    </body>
+</html>

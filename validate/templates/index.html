@@ -1,0 +1,18 @@
+<html>
+
+<head>
+    <title>Basic Validation Example</title>
+</head>
+
+<body>
+    <h1>Enter a Valid(Any) Name!</h1>
+    {% if error %}
+        <p><p style="color:red">Error: {{ error }}</p>
+    {% endif %}
+    <form action='/process' method='POST'>
+        Name:<input type="text" name="name">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>

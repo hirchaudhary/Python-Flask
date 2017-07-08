@@ -1,0 +1,25 @@
+<html>
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="form-style-3">
+            <fieldset>
+                <legend>Welcome, {{session['name']}}</legend>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+                {% block body %}{% endblock %}
+            </fieldset>
+
+    </div>
+</body>
+
+</html>
